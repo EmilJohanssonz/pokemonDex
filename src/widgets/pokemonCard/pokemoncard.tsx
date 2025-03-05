@@ -1,4 +1,5 @@
 import { Pokemon } from "../../types/type";
+import { getTypeColor } from "./typeColors";
 
 interface PokemonCardProps {
   pokemon: Pokemon;
@@ -54,29 +55,3 @@ export default function PokemonCard({ pokemon }: PokemonCardProps) {
     </div>
   );
 }
-
-// Function to determine color based on Pokémon type
-const getTypeColor = (type: string) => {
-  const colors: { [key: string]: string } = {
-    fire: "#F57D31",
-    water: "#539DDF",
-    grass: "#5FBD58",
-    electric: "#F9CF30",
-    ice: "#75D0C1",
-    fighting: "#D3425F",
-    poison: "#B763CF",
-    ground: "#DA7C4D",
-    flying: "#A891EC",
-    psychic: "#FA8581",
-    bug: "#92BC2C",
-    rock: "#C9BB8A",
-    ghost: "#5F6DBC",
-    dragon: "#0B6DC3",
-    dark: "#595761",
-    steel: "#5695A3",
-    fairy: "#EE90E6",
-    normal: "#A0A29F",
-  };
-
-  return colors[type] || "#68A090";
-};
