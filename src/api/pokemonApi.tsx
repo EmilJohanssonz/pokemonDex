@@ -49,7 +49,7 @@ export default function PokemonApi({ searchTerm }: PokemonApiProps) {
       <img
         src="/whos that pokemon GIF.gif"
         alt="Loading..."
-        className="mx-auto"
+        className="mx-auto pl-8.5"
       />
     );
   if (!pokemonList || pokemonList.length === 0) return <p>No Pokémon found.</p>;

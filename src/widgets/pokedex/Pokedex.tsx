@@ -7,10 +7,11 @@ export default function Pokedex({ searchTerm }: { searchTerm: string }) {
       <div className="bg-red-600 w-[700px] h-[500px] rounded-lg shadow-lg relative border-8 border-red-800 flex flex-col items-center p-4">
         {/* Top Lights */}
         <div className="absolute top-2 left-4 flex gap-2">
-          <div className="w-6 h-6 bg-blue-400 rounded-full border-2 border-white"></div>
+          <div className="w-6 h-6 bg-red-500 rounded-full border-2 border-white"></div>
           <div className="w-4 h-4 bg-yellow-400 rounded-full"></div>
           <div className="w-4 h-4 bg-green-400 rounded-full"></div>
         </div>
+        <button className="absolute top-11 left-8 w-12 h-12 rounded-full border-2 border-white bg-blue-400"></button>
 
         {/* Main Screen */}
         {/* Här visas Pokémon via PokemonApi */}
