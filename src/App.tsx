@@ -1,7 +1,7 @@
 import "./App.css";
 import { useState } from "react";
 import SearchBar from "./components/search/SearchBar";
-import Pokedex from "./components/pokedex/Pokedex";
+import Pokedex from "./widgets/pokedex/Pokedex";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
