@@ -1,6 +1,7 @@
+import "./App.css";
 import { useState } from "react";
-import PokemonApi from "./api/pokemonApi";
 import SearchBar from "./components/search/SearchBar";
+import Pokedex from "./components/pokedex/Pokedex";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -11,11 +12,11 @@ function App() {
 
   return (
     <div>
-      <h1>Pokédex</h1>
+      <h1 className="text-5xl font-mono text-center text-[#FFD622]">Pokémon</h1>
       <SearchBar query={searchQuery} onSearch={handleSearch} />
       <p>Current Search: {searchQuery}</p>{" "}
       {/* Display the current search query */}
-      <PokemonApi searchTerm={searchQuery} />
+      <Pokedex searchTerm={searchQuery}/>
     </div>
   );
 }
