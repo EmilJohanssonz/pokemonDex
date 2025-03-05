@@ -1,6 +1,9 @@
+import { useState } from "react";
 import PokemonApi from "../../api/pokemonApi";
 
 export default function Pokedex({ searchTerm }: { searchTerm: string }) {
+  const [isFlashing, setIsFlashing] = useState(true); // Sätt isFlashing till true så knappen alltid blinkar
+
   return (
     <div className="flex justify-left items-center  ">
       {/* Pokédex Container */}
@@ -11,8 +14,11 @@ export default function Pokedex({ searchTerm }: { searchTerm: string }) {
           <div className="w-4 h-4 bg-yellow-400 rounded-full"></div>
           <div className="w-4 h-4 bg-green-400 rounded-full"></div>
         </div>
-        <button className="absolute top-11 left-8 w-12 h-12 rounded-full border-2 border-white bg-blue-400"></button>
-
+        <button
+          className={`absolute top-11 left-8 w-12 h-12 rounded-full border-2 border-white ${
+            isFlashing ? "bg-blue-400 animate-ping" : "bg-blue-400"
+          }`}
+        ></button>
         {/* Main Screen */}
         {/* Här visas Pokémon via PokemonApi */}
         <PokemonApi searchTerm={searchTerm} />
