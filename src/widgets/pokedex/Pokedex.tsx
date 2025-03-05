@@ -7,7 +7,7 @@ export default function Pokedex({ searchTerm }: { searchTerm: string }) {
   return (
     <div className="flex justify-left items-center  ">
       {/* Pokédex Container */}
-      <div className="bg-red-600 w-[700px] h-[500px] rounded-lg shadow-lg relative border-8 border-red-800 flex flex-col items-center p-4">
+      <div className="bg-red-600 w-[500px] h-[500px] rounded-lg shadow-lg relative border-8 border-red-800 flex flex-col items-center p-4">
         {/* Top Lights */}
         <div className="absolute top-2 left-4 flex gap-2">
           <div className="w-6 h-6 bg-red-500 rounded-full border-2 border-white"></div>

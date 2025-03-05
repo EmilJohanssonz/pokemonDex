@@ -49,21 +49,23 @@ export default function PokemonApi({ searchTerm }: PokemonApiProps) {
       <img
         src="/whos that pokemon GIF.gif"
         alt="Loading..."
-        className="mx-auto pl-8.5"
+        className="mx-auto pt-8.5"
       />
     );
   if (!pokemonList || pokemonList.length === 0) return <p>No Pokémon found.</p>;
 
-  return (
-    <div className="overflow-x-auto scroll-smooth p-4">
-      <div className="grid grid-cols-1 gap-1.5">
-        {pokemonList.map((pokemon) => (
-          <>
-            {/* <PokemonCard key={pokemon.name} pokemon={pokemon} />*/}
-            <PokemonFlipCard key={pokemon.name} pokemon={pokemon} />
-          </>
-        ))}
-      </div>
+return (
+  <div
+    className="overflow-x-auto scroll-smooth p-2 mt-15"
+    style={{ maxHeight: "50vh" }}
+  >
+    {/* Begränsa scrollområdet till 50% av viewport höjd */}
+    <div className="grid grid-cols-1 gap-1.5">
+      {pokemonList.map((pokemon) => (
+        <PokemonFlipCard key={pokemon.name} pokemon={pokemon} />
+      ))}
     </div>
-  );
+  </div>
+);
+
 }

@@ -13,9 +13,9 @@ function App() {
   return (
     <div>
       <h1 className="text-5xl font-mono text-center text-[#FFD622]">Pokémon</h1>
-      <SearchBar query={searchQuery} onSearch={handleSearch} />
-      <p>Current Search: {searchQuery}</p>{" "}
       {/* Display the current search query */}
+      <SearchBar query={searchQuery} onSearch={handleSearch} />
+      <p className="text-center">Current Search: {searchQuery}</p>
       <Pokedex searchTerm={searchQuery}/>
     </div>
   );

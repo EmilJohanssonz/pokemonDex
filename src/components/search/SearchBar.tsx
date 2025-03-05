@@ -12,7 +12,7 @@ const SearchBar = ({ query, onSearch }: SearchBarProps) => {
   };
 
   return (
-    <div>
+    <div className="flex justify-center">
       <input
         type="text"
         value={query}
