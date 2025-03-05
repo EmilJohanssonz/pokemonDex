@@ -1,30 +1,56 @@
 import { useEffect, useState } from "react";
-import { Pokemon, PokemonProps } from "../types/type";
-import { fetchPokemon } from "./fetch";
+import { Pokemon } from "../types/type";
+import { fetchPokemonByFirstLetter } from "./fetch";
 import PokemonCard from "../widgets/pokemonCard/pokemoncard";
 
-export default function PokemonApi({ PokemonNameID }: PokemonProps) {
-  const [pokemon, setPokemon] = useState<Pokemon | null>(null);
+interface PokemonApiProps {
+  searchTerm: string;
+}
+
+export default function PokemonApi({ searchTerm }: PokemonApiProps) {
+  const [pokemonList, setPokemonList] = useState<Pokemon[] | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!PokemonNameID) return;
+    if (!searchTerm) return;
     let ignore = false;
 
-    fetchPokemon(PokemonNameID).then((data) => {
-      if (!ignore && data) {
-        setPokemon(data);
-        setLoading(false);
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const data = await fetchPokemonByFirstLetter(searchTerm);
+        if (!ignore && data) {
+          setPokemonList(data);
+        } else if (!ignore) {
+          setPokemonList(null);
+        }
+      } catch (error) {
+        console.error("Error fetching Pokémon:", error);
+        if (!ignore) {
+          setPokemonList(null);
+        }
+      } finally {
+        if (!ignore) {
+          setLoading(false);
+        }
       }
-    });
+    };
+
+    fetchData();
 
     return () => {
       ignore = true;
     };
-  }, [PokemonNameID]);
+  }, [searchTerm]);
 
   if (loading) return <p>Loading...</p>;
-  if (!pokemon) return <p>No Pokemon found.</p>;
+  if (!pokemonList || pokemonList.length === 0) return <p>No Pokémon found.</p>;
 
-  return <PokemonCard pokemon={pokemon} />;
+  return (
+    <div>
+      {pokemonList.map((pokemon) => (
+        <PokemonCard key={pokemon.name} pokemon={pokemon} />
+      ))}
+    </div>
+  );
 }

@@ -1,22 +1,26 @@
-import { useState } from "react";
+import React from "react";
 
-export default function SearchBar() {
-  const [searchTerm, setSearchTerm] = useState("");
+interface SearchBarProps {
+  query: string;
+  onSearch: (query: string) => void;
+}
 
+const SearchBar = ({ query, onSearch }: SearchBarProps) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
+    const newQuery = e.target.value;
+    onSearch(newQuery); // Call onSearch on every change
   };
 
   return (
-    <div className="search-bar">
+    <div>
       <input
         type="text"
-        value={searchTerm}
+        value={query}
         onChange={handleChange}
-        placeholder="Search..."
-        className="input-field"
+        placeholder="Search for Pokémon"
       />
-      <p className="live-text">You are searching for: {searchTerm}</p>
     </div>
   );
-}
+};
+
+export default SearchBar;
