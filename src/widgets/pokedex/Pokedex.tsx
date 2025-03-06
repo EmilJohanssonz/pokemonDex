@@ -5,7 +5,7 @@ export default function Pokedex({ searchTerm }: { searchTerm: string }) {
   const [isFlashing, setIsFlashing] = useState(true); // Sätt isFlashing till true så knappen alltid blinkar
 
   return (
-    <div className="flex justify-left items-center  ">
+    <div className="flex justify-left items-center pt-3.5">
       {/* Pokédex Container */}
       <div className="bg-red-600 w-[500px] h-[500px] rounded-lg shadow-lg relative border-8 border-red-800 flex flex-col items-center p-4">
         {/* Top Lights */}

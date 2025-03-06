@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Pokemon } from "../types/type";
 import { fetchPokemonByFirstLetter } from "./fetch";
-import PokemonCard from "../widgets/pokemonCard/pokemoncard";
 import PokemonFlipCard from "../widgets/pokemonCard/PokemonFlipCard";
 
 interface PokemonApiProps {
@@ -57,7 +56,7 @@ export default function PokemonApi({ searchTerm }: PokemonApiProps) {
 return (
   <div
     className="overflow-x-auto scroll-smooth p-2 mt-15"
-    style={{ maxHeight: "50vh" }}
+    style={{ maxHeight: "55vh" }}
   >
     {/* Begränsa scrollområdet till 50% av viewport höjd */}
     <div className="grid grid-cols-1 gap-1.5">
