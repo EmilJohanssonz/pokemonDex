@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 interface SearchBarProps {
   query: string;
@@ -7,13 +7,13 @@ interface SearchBarProps {
 
 const SearchBar = ({ query, onSearch }: SearchBarProps) => {
   const [isTyping, setIsTyping] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newQuery = e.target.value;
     onSearch(newQuery); // Call onSearch on every change
   };
 
-  // function for focus and blur for the pokeball
   const handleFocus = () => {
     setIsTyping(true);
   };
@@ -28,9 +28,10 @@ const SearchBar = ({ query, onSearch }: SearchBarProps) => {
         <img
           src="/pokeball-icon.png.png"
           alt="Poké Ball"
-          className={`w-8 h-7 ${isTyping ? "spin" : ""}`} // Add the spin class 
+          className={`w-8 h-7 ${isTyping ? "spin" : ""}`} // Add the spin class conditionally
         />
         <input
+          ref={inputRef}
           type="text"
           value={query}
           onChange={handleChange}
