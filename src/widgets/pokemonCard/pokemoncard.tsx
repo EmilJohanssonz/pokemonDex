@@ -1,5 +1,7 @@
 import { Pokemon } from "../../types/type";
 import { getTypeColor } from "./typeColors";
+import { useContext } from "react";
+import { PokemonContext } from "../../context/pokemonContext";
 
 interface PokemonCardProps {
   pokemon: Pokemon;
@@ -8,6 +10,10 @@ interface PokemonCardProps {
 const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 
 export default function PokemonCard({ pokemon }: PokemonCardProps) {
+  const context = useContext(PokemonContext);
+  if (!context)
+    throw new Error("useContext must be used within a PokemonProvider");
+
   const hpStat = pokemon.stats?.find((stat) => stat.stat.name === "hp");
 
   return (

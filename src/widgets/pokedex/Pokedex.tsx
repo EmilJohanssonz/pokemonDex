@@ -1,4 +1,3 @@
-import { useState } from "react";
 import PokemonApi from "../../api/pokemonApi";
 
 export default function Pokedex({ searchTerm }: { searchTerm: string }) {

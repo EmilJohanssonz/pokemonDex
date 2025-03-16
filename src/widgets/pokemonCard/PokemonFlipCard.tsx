@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { motion } from "framer-motion";
 import { Pokemon } from "../../types/type";
 import { getTypeColor } from "./typeColors";
+import { PokemonContext } from "../../context/pokemonContext"; 
 
 interface PokemonFlipCardProps {
   pokemon: Pokemon;
@@ -12,7 +13,21 @@ const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 export default function PokemonFlipCard({ pokemon }: PokemonFlipCardProps) {
   const [isFlipped, setIsFlipped] = useState(false);
 
+  //  Hämta favoriter och toggle-funktion från Context
+  const context = useContext(PokemonContext);
+  if (!context)
+    throw new Error("useContext must be used within a PokemonProvider");
+
+  const { favorites, toggleFavorite } = context;
+  const isFavorite = favorites.includes(pokemon.name);
+
   const hpStat = pokemon.stats.find((stat) => stat.stat.name === "hp");
+
+  
+
+
+
+  const { setSelectedPokemon, setIsModalOpen } = context;
 
   return (
     <motion.div
@@ -62,6 +77,24 @@ export default function PokemonFlipCard({ pokemon }: PokemonFlipCardProps) {
               </span>
             ))}
           </div>
+
+          {/* FAVORITKNAPP  */}
+          <button
+            className={`mt-4 px-4 py-2 rounded-lg font-bold text-white transition-all duration-300
+    ${isFavorite ? "bg-yellow-400 shadow-md shadow-yellow-500/50" : "bg-opacity-80 hover:bg-opacity-100"}
+  `}
+            style={{
+              backgroundColor: isFavorite
+                ? "#FFD700"
+                : getTypeColor(pokemon.types[0].type.name),
+            }}
+            onClick={(e) => {
+              e.stopPropagation(); // Förhindrar att kortet flippar när man klickar på knappen
+              toggleFavorite(pokemon.name);
+            }}
+          >
+            {isFavorite ? "★ UnFavorite" : "☆ Favorite"}
+          </button>
         </div>
 
         {/* Baksida */}
@@ -97,6 +130,11 @@ export default function PokemonFlipCard({ pokemon }: PokemonFlipCardProps) {
                 ?.base_stat
             }
           </p>
+          <button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-lg"
+          onClick={() => {
+            setSelectedPokemon(pokemon);
+            setIsModalOpen(true);
+          }}>View More</button>
         </div>
       </motion.div>
     </motion.div>
